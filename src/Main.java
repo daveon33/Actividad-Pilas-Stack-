@@ -5,12 +5,13 @@ public class Main {
     public static void main(String[] args) {
 
         // Se definen las pilas y otras variables
-        Pila pilaPrincipal = new Pila();
-        Pila pilaSecundaria = new Pila();
+        Pila undoStack = new Pila();
+        Pila redoStack = new Pila();
         Scanner scanner = new Scanner(System.in);
 
         boolean salir = false;
-        String opcionElegida = "";
+        String opcionElegida;
+        String textoCompleto = "";
 
         // Menú en consola
 
@@ -26,14 +27,33 @@ public class Main {
 
             switch (opcionElegida) {
                 case "1":
+                    scanner.nextLine();
+                    System.out.println("Ingresa el texto: ");
+                    textoCompleto += scanner.nextLine();
+                    undoStack.push(textoCompleto);
+                    redoStack = new Pila();
                     break;
                 case "2":
+                    if(undoStack.isEmpty()) {
+                        System.out.println("Pila vacia, intenta otra opcion");
+                    } else {
+                        redoStack.push(undoStack.pop());
+                        textoCompleto = undoStack.isEmpty() ? "" : undoStack.peek();
+                    }
                     break;
                 case "3":
+                    if(redoStack.isEmpty()) {
+                        System.out.println("Pila vacia, intenta otra opcion");
+                    } else {
+                        textoCompleto = redoStack.pop();
+                        undoStack.push(textoCompleto);
+                    }
                     break;
                 case "4":
+                    System.out.println(undoStack.peek());
                     break;
                 case "5":
+                    salir = true;
                     break;
                 default:
                     System.out.println("No existe esa opción, por favor intenta nuevamente.");

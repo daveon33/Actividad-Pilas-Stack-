@@ -2,32 +2,30 @@ import java.util.ArrayList;
 
 public class Pila {
 
-    private ArrayList<Integer> miPila;
+    private ArrayList<String> miPila;
 
     public Pila() {
-        this.miPila = new ArrayList<Integer>();
+        this.miPila = new ArrayList<String>();
     }
 
-    public void push(int value) {
+    public void push(String value) {
         miPila.add(value);
     }
 
-    public int pop() {
+    public String pop() {
         if(isEmpty()) {
-            System.out.println("La pila está vacia...");
-            return -1;
+            return "La pila está vacia...";
         } else {
-            int ultimoValor = miPila.getLast();
+            String ultimoValor = miPila.getLast();
             miPila.removeLast();
 
             return ultimoValor;
         }
     }
 
-    public int peek() {
+    public String peek() {
         if(isEmpty()) {
-            System.out.println("No hay valores en la pila...");
-            return -1;
+            return "La pila está vacia...";
         } else {
             return miPila.getLast();
         }
@@ -35,5 +33,22 @@ public class Pila {
 
     public boolean isEmpty() {
         return miPila.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        if (isEmpty()) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = miPila.size() - 1; i >= 0; i--) {
+            sb.append(miPila.get(i));
+            if (i > 0) {
+                sb.append(", ");
+            }
+        }
+        sb.append("] <- cima");
+        return sb.toString();
     }
 }
