@@ -8,13 +8,19 @@ public class Main {
         Pila undoStack = new Pila();
         Pila redoStack = new Pila();
         Scanner scanner = new Scanner(System.in);
-
         boolean salir = false;
         String opcionElegida;
         String textoCompleto = "";
 
-        // Menú en consola
+        /* Menú en consola
+           Se hace uso de un ciclo do-while el cual ejecutará el código como mínimo una vez, la condición para que el ciclo
+           se interrumpa se da cuando el usuario selecciona la opción 5 - Salir.
 
+           Con ayuda de un Switch se tienen 5 opciones para que el usuario interactue con el editor de texto, si selecciona la
+           opción 1 se guarda el texto escrito en consola dentro de una de las pilas(undoStack), la opción 2 toma el último valor
+           de la undostack y lo añade a la redostack, la opción 3 toma el último valor del redostack y lo agrega al undostack, la opción
+           4 permite ver el último valor agregado al undostack y finalmente la opción 5 nos deja salir del editor de texto
+        */
         do {
             System.out.println("Por favor seleccione una de las siguientes opciones: ");
             System.out.println("Escribir texto - 1");
